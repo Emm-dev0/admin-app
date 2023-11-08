@@ -42,7 +42,7 @@ const MainLayout = () => {
         <Header
           style={{
             padding: 0,
-           
+            
           }}
         >
           <Button
@@ -61,9 +61,8 @@ const MainLayout = () => {
             margin: '24px 16px',
             padding: 24,
             minHeight: 280,
-          }}
-        >
-          Content
+          }}>
+          Contents
         </Content>
       </Layout>
     </Layout>
