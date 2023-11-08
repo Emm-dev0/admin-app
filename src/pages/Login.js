@@ -1,4 +1,5 @@
 import React from "react";
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Checkbox, Card } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Typography } from "antd";
@@ -6,24 +7,29 @@ const { Title } = Typography;
  
 
 const Login = () => {
+  const navigate = useNavigate();
 
-  const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-    if (values.remember) {
-      localStorage.setItem("username", values.username);
-      localStorage.setItem("password", values.password);
-    }
+  const onFinish = () => {
+    console.log("Received values of form: ");
+    // if (values.remember) {
+    //   localStorage.setItem("username", values.username);
+    //   localStorage.setItem("password", values.password);
+    // }
+    navigate('/admin');
   };
 
   const handleForgotPassword = (e) => {
+    navigate('/forgot-password');
     e.preventDefault();
     console.log("Handle password recovery logic here");
   };
 
   const handleRegister = (e) => {
+    navigate('/sign-up');
     e.preventDefault();
     console.log("Handle registration logic here");
   };
+
 
   return (
 <div
@@ -41,7 +47,7 @@ style={{
   <Form
     name="normal_login"
     className="login-form"
-    initialValues={{ remember: true }}
+    // initialValues={{ remember: true }}
     onFinish={onFinish}
   >
     <Form.Item
@@ -65,7 +71,6 @@ style={{
       <a
         style={{ float: "right" }}
         className="login-form-forgot"
-        href="./forgot-password"
         onClick={handleForgotPassword}
       >
         Forgot password
@@ -85,8 +90,8 @@ style={{
       >
         Log in
       </Button>
-      Don't have an account{" "}
-      <a href="" onClick={handleRegister}>
+      Don't have an account? {" "}
+      <a onClick={handleRegister} className="login-form-forgot">
         sign up
       </a>
     </Form.Item>

@@ -6,12 +6,15 @@ import Login from './pages/Login';
 import Forgotpassword from './pages/Forgotpassword';
 import Dashboard from './pages/Dashboard';
 import SpotifyComponent from './components/SpotifyComponent';
+import Signup from './pages/Signup';
+
 
 function App() {
   return (
    <Router>
     <Routes>
       <Route path="/" element={<Login />}/>
+      <Route path="/sign-up" element={<Signup />}/>
       <Route path="/reset-password" element={<Resetpassword />}/>
       <Route path="/forgot-password" element={<Forgotpassword />}/>
       <Route path="/spotify" element={<SpotifyComponent />}/>
