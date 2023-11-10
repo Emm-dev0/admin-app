@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from "antd";
@@ -7,11 +8,13 @@ import { Row, Col, Typography } from "antd";
 
 const { Title } = Typography;
 
-const Signup = () => {
+const Signup = ({ setUsername }) => {
   const navigate = useNavigate();
   
   const onFinish = (values) => {
     console.log("Success:", values);
+    const newUsername = values.username;
+    setUsername(newUsername);
     navigate('/admin');
   };
 
@@ -44,6 +47,24 @@ const Signup = () => {
           >
             <Input prefix={<MailOutlined />} placeholder="Email" />
           </Form.Item>
+
+          <Form.Item
+            name="username"
+            rules={[
+              {
+                type: "text",
+                message: "The input is not valid username!",
+              },
+              {
+                required: true,
+                message: "Please input your Username!",
+              },
+            ]}
+            hasFeedback
+          >
+            <Input prefix={<MailOutlined />} placeholder="Username" />
+          </Form.Item>
+
           <Form.Item
             name="password"
             rules={[
@@ -107,4 +128,10 @@ const Signup = () => {
   );
 };
 
-export default Signup
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUsername: (username) => dispatch({ type: 'SET_USERNAME', payload: username }),
+  }
+}
+export default connect(null, mapDispatchToProps)(Signup);

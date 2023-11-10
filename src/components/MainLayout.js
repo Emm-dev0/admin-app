@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -7,9 +8,12 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from '@ant-design/icons';
+
 import { Layout, Menu, Button, theme } from 'antd';
+
 const { Header, Sider, Content } = Layout; 
-const MainLayout = () => {
+
+const MainLayout = ({ username }) => {
     const [collapsed, setCollapsed] = useState(false);
   return (
     <Layout>
@@ -63,11 +67,18 @@ const MainLayout = () => {
             minHeight: 280,
           }}>
           Contents
+          <h1>Welcome, {username}</h1>
         </Content>
       </Layout>
     </Layout>
   
   );
-}
+};
 
-export default MainLayout
+const mapStateToProps = (state) => {
+  return {
+    username: state.user.username,
+  };
+};
+
+export default connect(mapStateToProps)(MainLayout);
