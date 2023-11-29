@@ -5,7 +5,6 @@ import MainLayout from './components/MainLayout';
 import Login from './pages/Login';
 import Forgotpassword from './pages/Forgotpassword';
 import Dashboard from './pages/Dashboard';
-import SpotifyComponent from './components/SpotifyComponent';
 import Signup from './pages/Signup';
 
 
@@ -17,7 +16,6 @@ function App() {
       <Route path="/sign-up" element={<Signup />}/>
       <Route path="/reset-password" element={<Resetpassword />}/>
       <Route path="/forgot-password" element={<Forgotpassword />}/>
-      <Route path="/spotify" element={<SpotifyComponent />}/>
       <Route path="/admin" element={<MainLayout />}>
         <Route index element={<Dashboard />}/>
       </Route>
